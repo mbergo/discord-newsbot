@@ -1,6 +1,10 @@
-import discord
+#!/usr/bin/env python3
+
 import asyncio
+from time import sleep
 import feedparser
+import discord
+import sys
 
 # URLs of tech news sites
 tech_sites = ['https://www.techspot.com/rss/',
@@ -15,10 +19,10 @@ tech_sites = ['https://www.techspot.com/rss/',
                 'https://www.theguardian.com/technology/rss']
 
 # Your bot token
-token = 'MTA3MDI3MTk3NDUzNTg2ODQ0Ng.G1byc8.aU852wZ_wKwG1fjNvUbMpLiQ4cWsnkpGJjCaYQ'
+token = sys.argv[1]
 
 # Channel ID to post to
-channel_id = '1064552688941027391'
+channel_id = '1085647232746917908'
 
 # Client object
 client = discord.Client(intents=discord.Intents.all())
@@ -38,11 +42,12 @@ async def check_feed():
                 # Check if the item has not been posted before
                 if item['link'] not in posted_items:
                     # Post the item to the channel
-                    await client.get_channel(1064552688941027391).send(item['title'] + '\n' + item['link'])
+                    sleep(5)
+                    await client.get_channel(1085327812002578442).send(item['title'] + '\n' + item['link'])
                     # Add the item to the list of posted items
                     posted_items.append(item['link'])
-        # Sleep for 60 seconds
-        await asyncio.sleep(60)
+            # Sleep for 60 seconds
+            await asyncio.sleep(60)
 
 # On ready
 @client.event
