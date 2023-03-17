@@ -47,7 +47,7 @@ async def check_feed():
                     # Add the item to the list of posted items
                     posted_items.append(item['link'])
             # Sleep for 60 seconds
-            await asyncio.sleep(60)
+            await asyncio.sleep(300)
 
 # On ready
 @client.event
